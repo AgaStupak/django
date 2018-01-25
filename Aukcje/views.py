@@ -70,7 +70,7 @@ def auction_edit_admin(request, pk):
             post.author = request.user
             post.published_date = timezone.now()
             post.save()
-            return redirect('admin_auction_list', pk=post.pk)
+            return redirect('admin_auction_list')
     else:
         form = AukcjaForm(instance=post)
     return render(request, 'Aukcje/auction_edit.html', {'form': form})
