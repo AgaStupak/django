@@ -1,0 +1,26 @@
+{% extends "Aukcje/base.html" %}
+
+{% block content %}
+    <h1>Komentarze</h1>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col"></th>
+      <th scope="col">Autor</th>
+        <th scope="col">Tresc</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for opinion in opinions %}
+    <tr>
+      <th scope="row"></th>
+      <td><a href="{% url 'profilePk' pk=opinion.autor.pk %}">{{ opinion.autor.username }}</a></td>
+      <td>{{ opinion.text }}</td>
+      <td><a class="btn btn-default" href="{% url 'opinion_remove' pk=opinion.pk %}">Usun</a></td>
+        <td><a class="btn btn-default" href="{% url 'opinion_approved' pk=opinion.pk %}">Zatwierdz</a></td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends "Aukcje/base.html" %}
+
+{% block content %}
+    <h1>Podkategorie</h1>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col"></th>
+      <th scope="col">podkategoria</th>
+        <th scope="col">kategoria</th>
+        <th scope="col">edytuj</th>
+
+    </tr>
+  </thead>
+  <tbody>
+  {% for subCategory in subCategories %}
+    <tr>
+      <th scope="row"></th>
+      <td>{{ subCategory.podkategoria }}</td>
+      <td>{{ subCategory.kategoria }}</td>
+        <td><a href="{% url 'edit_subcategory' pk=subCategory.pk %}">Edytuj</a> </td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends "Aukcje/base.html" %}
+
+{% block content %}
+    <h1>Aukcje</h1>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col"></th>
+      <th scope="col">Autor</th>
+        <th scope="col">Tytul</th>
+        <th scope="col">Edytuj</th>
+        <th scope="col">Usun</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for auction in auctions %}
+    <tr>
+      <th scope="row"></th>
+      <td><a href="{% url 'profilePk' pk=auction.author.pk %}">{{ auction.author.username }}</a></td>
+      <td>{{ auction.title }}</td>
+      <td><a class="btn btn-default" href="{% url 'auction_edit_admin' pk=auction.pk %}">Edytuj</a></td>
+        <td><a class="btn btn-default" href="{% url 'auction_remove_admin' pk=auction.pk %}">Usun</a></td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

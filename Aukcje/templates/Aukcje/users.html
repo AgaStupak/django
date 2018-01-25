@@ -1,0 +1,36 @@
+{% extends "Aukcje/base.html" %}
+
+{% block content %}
+    <h1>Uzytkownicy</h1>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col"></th>
+      <th scope="col">Username</th>
+        <th scope="col">Imie</th>
+        <th scope="col">Nazwisko</th>
+        <th scope="col">email</th>
+        <th scope="col">ranga</th>
+        <th scope="col">ustaw usera</th>
+        <th scope="col">ustaw moderatora</th>
+        <th scope="col">ustaw admina</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for user in users %}
+    <tr>
+      <th scope="row"></th>
+      <td><a href="{% url 'profilePk' pk=user.pk %}">{{ user.username }}</a></td>
+      <td>{{ user.first_name }}</td>
+        <td>{{ user.last_name }}</td>
+        <td>{{ user.email }}</td>
+        <td>{{ user.groups.all.first }}</td>
+        <td><a href="{% url 'change_group' pk=user.pk old_group=user.groups.all.first.name new_group="User" %}">U</a> </td>
+        <td><a href="{% url 'change_group' pk=user.pk old_group=user.groups.all.first.name new_group="Moderator" %}">M</a> </td>
+        <td><a href="{% url 'change_group' pk=user.pk old_group=user.groups.all.first.name new_group="Admin" %}">A</a> </td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends 'Aukcje/base.html' %}
+
+{% block content %}
+
+       {% for subCat in subCategories %}
+            <a href="{% url 'show_subcategory' pk=subCat.kategoria.pk subC=subCat.pk %}">  {{ subCat.podkategoria }} </a>|
+    {% endfor %}
+
+<br>
+    <br>
+    <h3> Kategoria: {{ subCat.kategoria.kategoria }}</h3>
+    <h3> Podkategoria: {{ subCat.podkategoria }}</h3>
+<br>
+
+    {% for auction in auctions %}
+        <div class="post">
+            <div class="date">
+                {{ auction.published_date }}
+            </div>
+            <h1><a href="{% url 'auction_detail' pk=auction.pk %}">{{ auction.title }}</a></h1>
+            <p>{{ auction.text|linebreaksbr }}</p>
+        </div>
+    {% endfor %}
+{% endblock %}

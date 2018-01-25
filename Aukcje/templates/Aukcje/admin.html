@@ -1,0 +1,29 @@
+{% extends 'Aukcje/base.html' %}
+
+{% block content %}
+
+
+    <div class="list-group">
+  <a href="{% url 'admin_auction_list' %}" class="list-group-item active">
+    Aukcje
+  </a>
+
+  <a href="{% url 'opinions' %}" class="list-group-item active">
+    Komentarze</a>
+       <a href="{% url 'approve_opinions' %}" class="list-group-item">Do zatwierdzenia</a>
+      {% if request.user.groups.all.first.name == "Admin" %}
+  <a href="{% url 'user_list' %}" class="list-group-item active">
+        Uzytkownicy
+  </a>
+           <a href="{% url 'subCategories' %}" class="list-group-item active">
+        Podkategorie
+  </a>
+                     <a href="{% url 'new_subcategory' %}" class="list-group-item">
+        Dodaj nowa
+  </a>
+    {% endif %}
+</div>
+
+
+
+{% endblock %}

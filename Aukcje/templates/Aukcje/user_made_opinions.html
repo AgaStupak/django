@@ -1,0 +1,55 @@
+{% extends "Aukcje/base.html" %}
+
+{% block content %}
+
+<h1>Opinie zatwierdzone</h1>
+    <table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col"></th>
+      <th scope="col">Oceniany</th>
+        <th scope="col">Data</th>
+        <th scope="col">Opinia</th>
+        <th scope="col">Edytuj</th>
+        <th scope="col">Usun</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for opinion in opinionsApproved %}
+    <tr>
+      <th scope="row"></th>
+      <td><a href="{% url 'profilePk' pk=opinion.komentowany.pk %}">{{ opinion.komentowany.username }}</a></td>
+        <td>{{ opinion.data }}</td>
+      <td>{{ opinion.text }}</td>
+        <td><a href="{%  url 'opinion_edit' pk=opinion.pk pkO=opinion.komentowany.pk %} ">edytuj</a> </td>
+    </tr>
+  {% endfor %}
+  </tbody>
+    </table>
+
+    <br>
+    <br>
+    <h1>Opinie niezatwierdzone</h1>
+    <table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col"></th>
+      <th scope="col">Komentowany</th>
+        <th scope="col">Data</th>
+        <th scope="col">Opinia</th>
+        <th scope="col">Edytuj</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for opinion in opinionsNotApproved %}
+    <tr>
+      <th scope="row"></th>
+      <td><a href="{% url 'profilePk' pk=opinion.komentowany.pk %}">{{ opinion.komentowany.username }}</a></td>
+        <td>{{ opinion.data }}</td>
+      <td>{{ opinion.text }}</td>
+    <td><a href="{%  url 'opinion_edit' pk=opinion.pk pkO=opinion.komentowany.pk %} ">edytuj</a> </td>
+    </tr>
+  {% endfor %}
+  </tbody>
+    </table>
+{% endblock %}

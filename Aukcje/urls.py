@@ -1,0 +1,33 @@
+from django.conf.urls import url
+from . import views
+
+urlpatterns = [
+    url(r'^$', views.auction_list, name='auction_list'),
+    url(r'^aukcja/(?P<pk>[0-9]+)/$', views.auction_detail, name='auction_detail'),
+    url(r'^aukcja/new/$', views.auction_new, name='auction_new'),
+    url(r'^aukcja/(?P<pk>[0-9]+)/edit/$', views.auction_edit, name='auction_edit'),
+    url(r'^aukcja/(?P<pk>\d+)/remove/$', views.auction_remove, name='auction_remove'),
+    url(r'^profil/(?P<pk>[0-9]+)/$', views.profilePk, name='profilePk'),
+    url(r'^profil/dodaj_opinie/(?P<pk>[0-9]+)/$', views.add_opinion, name='add_opinion'),
+    url(r'^profil/$', views.profile, name='profile'),
+    url(r'^kategoria/(?P<pk>\w+\s\w+)/$', views.show_category, name='show_category'),
+    url(r'^kategoria/(?P<pk>\w+)/$', views.show_category, name='show_category'),
+    url(r'^kategoria/(?P<pk>\w+)/podkategoria/(?P<subC>\w+)$', views.show_subcategory, name='show_subcategory'),
+    url(r'^profil/aukcje/$', views.user_auctions, name='user_auctions'),
+    url(r'^profil/opinie/moje/$', views.user_opinions, name='user_opinions'),
+    url(r'^profil/opinie/wystawione/$', views.user_made_opinions, name='user_made_opinions'),
+    url(r'^profil/opinie/wystawione/edytuj/(?P<pk>\d+)/(?P<pkO>\d+)/$', views.opinion_edit, name='opinion_edit'),
+    url(r'^admin/panel/$', views.admin_panel, name='admin_panel'),
+    url(r'^admin/komentarze/zatwierdz/$', views.approve_opinions, name='approve_opinions'),
+    url(r'^admin/komentarze/$', views.opinions, name='opinions'),
+    url(r'^admin/komentarze/(?P<pk>\d+)/remove/$', views.opinion_remove, name='opinion_remove'),
+    url(r'^admin/komentarze/(?P<pk>\d+)/zatwierdzony/$', views.opinion_approved, name='opinion_approved'),
+    url(r'^admin/aukcje/$', views.admin_auction_list, name='admin_auction_list'),
+    url(r'^admin/aukcje/(?P<pk>\d+)/remove/$', views.auction_remove_admin, name='auction_remove_admin'),
+    url(r'^admin/aukcje/(?P<pk>\d+)/edit/$', views.auction_edit_admin, name='auction_edit_admin'),
+    url(r'^admin/users/$', views.user_list, name='user_list'),
+    url(r'^admin/users/(?P<pk>\d+)/(?P<old_group>\w+)/(?P<new_group>\w+)/$', views.change_group, name='change_group'),
+    url(r'^admin/podkategorie/$', views.subCategories, name='subCategories'),
+    url(r'^admin/podkategorie/edytuj/(?P<pk>\d+)$', views.edit_subcategory, name='edit_subcategory'),
+    url(r'^admin/podkategorie/nowa$', views.new_subcategory, name='new_subcategory'),
+]

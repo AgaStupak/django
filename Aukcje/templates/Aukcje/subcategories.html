@@ -1,0 +1,26 @@
+{% extends "Aukcje/base.html" %}
+
+{% block content %}
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col"></th>
+      <th scope="col">Kategoria</th>
+        <th scope="col">Podkategoria</th>
+        <th scope="col">Edytuj</th>
+        <th scope="col">Usun</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for subCategory in subCategories %}
+    <tr>
+      <th scope="row"></th>
+      <td>{{subCategory.kategoria.kategoria }}</td>
+      <td>{{ subCategory.podkategoria }}</td>
+        <td>edytuj</td>
+        <td>{{ subCategory.delete }}</td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

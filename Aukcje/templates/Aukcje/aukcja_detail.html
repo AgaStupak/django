@@ -1,0 +1,23 @@
+{% extends 'Aukcje/base.html' %}
+
+{% block content %}
+    <div class="post">
+        {% if aukcja.published_date %}
+            <div class="date">
+                {{ aukcja.published_date }}
+            </div>
+            <div>Autor: <a href="{% url 'profilePk' pk=aukcja.author.pk %}">{{ aukcja.author.username }}</a></div>
+            <div>Kontakt : {{ aukcja.author.email }}</div>
+        {% endif %}
+        {% if user.username == aukcja.author.username %}
+        <a class="btn btn-default" href="{% url 'auction_edit' pk=aukcja.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
+        <a class="btn btn-default" href="{% url 'auction_remove' pk=aukcja.pk %}"><span class="glyphicon glyphicon-remove"></span></a>
+        {% endif %}
+        <h1>Tytul:{{ aukcja.title }}</h1>
+        <p>Opis: {{ aukcja.text|linebreaksbr }}</p>
+        Kategoria:{{ aukcja.kategoria }}
+
+        <img src="{{ aukcja.zdjecie.url }}" alt="img" width="200" height="200" class="img-responsive img-rounded">
+
+    </div>
+{% endblock %}

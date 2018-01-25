@@ -1,0 +1,96 @@
+{% extends "Aukcje/base.html" %}
+
+{% block content %}
+
+    <h1>Dane</h1>
+    <br>
+    {% if user == request.user %}
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col"></th>
+      <th scope="col">Username</th>
+      <th scope="col">Imie</th>
+      <th scope="col">Nazwisko</th>
+        <th scope="col">email</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row"></th>
+      <td>{{ user.username }}</td>
+      <td>{{ user.first_name }}</td>
+      <td>{{ user.last_name }}</td>
+        <td>{{ user.email }}</td>
+    </tr>
+  </tbody>
+</table>
+    {% else %}
+
+        <table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col"></th>
+      <th scope="col">Username</th>
+        <th scope="col">email</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row"></th>
+      <td>{{ user.username }}</td>
+        <td>{{ user.email }}</td>
+    </tr>
+  </tbody>
+</table>
+
+
+{% endif %}
+
+<br>
+    <h1>Aukcje</h1>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col"></th>
+      <th scope="col">Tytul</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for auction in auctions %}
+    <tr>
+      <th scope="row"></th>
+      <td><a href="{% url 'auction_detail' pk=auction.pk %}">{{ auction.title }}</a></td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+
+
+<h1>Opinie</h1>
+    {% if user != request.user %}
+        <a class="btn btn-default" href="{% url 'add_opinion' pk=user.pk %}">Dodaj Opinie</a>
+    {% endif %}
+
+    <table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col"></th>
+      <th scope="col">Autor</th>
+        <th scope="col">Data</th>
+        <th scope="col">Opinia</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for opinion in opinions %}
+    <tr>
+      <th scope="row"></th>
+      <td><a href="{% url 'profilePk' pk=opinion.autor.pk %}">{{ opinion.autor.username }}</a></td>
+        <td>{{ opinion.data }}</td>
+      <td>{{ opinion.text }}</td>
+    </tr>
+  {% endfor %}
+  </tbody>
+    </table>
+{% endblock %}

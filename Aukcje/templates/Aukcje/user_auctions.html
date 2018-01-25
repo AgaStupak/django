@@ -1,0 +1,26 @@
+{% extends 'Aukcje/base.html' %}
+
+{% block content %}
+
+    <h1>Aukcje</h1>
+    <table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col"></th>
+      <th scope="col">Tytul</th>
+        <th scope="col">Edytuj</th>
+        <th scope="col">Usun</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for auction in auctions %}
+    <tr>
+      <th scope="row"></th>
+      <td><a href="{% url 'auction_detail' pk=auction.pk %}">{{ auction.title }}</a></td>
+      <td><a href="{% url 'auction_edit' pk=auction.pk %}"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a></td>
+      <td><a href="{% url 'auction_remove' pk=auction.pk %}"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% endblock %}
